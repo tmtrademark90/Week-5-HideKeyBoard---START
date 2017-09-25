@@ -3,7 +3,7 @@
 //  HideKeyBoard
 //
 //  Created by Charles Konkol on 2/9/15.
-//  Copyright (c) 2016 Rock Valley College. All rights reserved.
+//  Copyright (c) 2017 Rock Valley College. All rights reserved.
 //
 
 import UIKit
