@@ -1,58 +1,76 @@
 // 1) Add MessageBox function using AlertView
-    func MsgBox(message:String)
+    func MsgBox(_ message:String)
     {
         //Create Alert
-       let alert = UIAlertView()
+        let alert = UIAlertView()
         alert.title = "Alert"
         alert.message = message
-        alert.addButtonWithTitle("OK")
+        alert.addButton(withTitle: "OK")
         alert.show()
+        
     }
-    
 // 2) Add touchesBegan function to catch screen tap and resign keyboard
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //Add Below Code from "Code for Steps.txt". Read Comments
+        
         //forces resign first responder and hides keyboard
         txtFirst.endEditing(true)
         txtLast.endEditing(true)
         txtEmail.endEditing(true)
+
+        
     }
     
 // 3) Add DismissKeyboard function to resign keyboard on all textboxes
     func DismissKeyboard(){
+        //Add Below Code from "Code for Steps.txt". Read Comments
+        
         //forces resign first responder and hides keyboard
         txtFirst.endEditing(true)
         txtLast.endEditing(true)
         txtEmail.endEditing(true)
+
+       
     }
     
 //  4) Add textFieldShouldReturn function. This is called when 'return' key pressed on any UITextField. return NO to ignore.
-    func textFieldShouldReturn(textField: UITextField!) -> Bool     {
+    func textFieldShouldReturn(_ textField: UITextField!) -> Bool     {
+         //Add Below Code from "Code for Steps.txt". Read Comments
+        
         textField.resignFirstResponder()
         return true;
     }
     
 //  5) Add textFieldDidBeginEditing function. ScrollPoint when entering UItextfied
-    func textFieldDidBeginEditing(textField:UITextField){
+    func textFieldDidBeginEditing(_ textField:UITextField){
+         //Add Below Code from "Code for Steps.txt". Read Comments
         var scrollPoint:CGPoint
-        scrollPoint = CGPointMake(0, textField.frame.origin.y)
-        ScrollView.setContentOffset(scrollPoint, animated: true)
+        scrollPoint = CGPoint(x:0, y:textField.frame.origin.y)
+               ScrollView.setContentOffset(scrollPoint, animated: true)
+       
     }
     
 // 6) Add textFieldDidEndEditing function. ScrollPoint when done editing UItextfied
-    func textFieldDidEndEditing(textField:UITextField){
-        ScrollView.setContentOffset(CGPointZero, animated: true)
-    }
+    func textFieldDidEndEditing(_ textField:UITextField){
+         //Add Below Code from "Code for Steps.txt". Read Comments
+        
+        ScrollView.setContentOffset(CGPoint.zero, animated: true)
+            }
     
 // 7) Add textViewDidBeginEditing function. ScrollPoint when entering UItextView
-    func textViewDidBeginEditing(textField:UITextView){
+    func textViewDidBeginEditing(_ textField:UITextView){
+         //Add Below Code from "Code for Steps.txt". Read Comments
         var scrollPoint:CGPoint
-        scrollPoint = CGPointMake(0, textField.frame.origin.y)
+        scrollPoint = CGPoint(x:0, y:textField.frame.origin.y)
+        
         ScrollView.setContentOffset(scrollPoint, animated: true)
+        
     }
     
 // 8) Add textViewDidEndEditing function. ScrollPoint when done ending UItextView
-    func textViewDidEndEditing(textField:UITextView){
-        ScrollView.setContentOffset(CGPointZero, animated: true)
+    func textViewDidEndEditing(_ textField:UITextView){
+         //Add Below Code from "Code for Steps.txt". Read Comments
+        ScrollView.setContentOffset(CGPoint.zero, animated: true)
     }
     
     
@@ -63,17 +81,18 @@
         
         //Add Below Code. Read Comments
         
-      //Looks for single or multiple taps
+        //Looks for single or multiple taps
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         //Adds tap gesture to ScrollView which will call DismissKeyboard and hide keyboard
         ScrollView.addGestureRecognizer(tap)
         //gets ScreenSize of current device
-        let size: CGRect = UIScreen.mainScreen().bounds
+        let size: CGRect = UIScreen.main.bounds
         //Go to left  = 0 pixels, top = 50 pixels, width or device in pixels, height of device in pixels
-        ScrollView.frame = CGRectMake(0, 50, size.width, size.height)
+        ScrollView.frame = CGRect(x:0, y:50, width:size.width, height:size.height)
         //Set focus on txtFirst
         txtFirst.becomeFirstResponder()
-
+      
+        
     }
     
 // 10) Default didReceiveMemoryWarning Function to dispose of memory automatically.Leave this function alone
@@ -83,19 +102,22 @@
     }
 
 // 11) Modify btnBack function. Goes back to original ScrollView position
-    @IBAction func btnBack(sender: UIButton) {
-        //Add Below Code. Read Comments
+    @IBAction func btnBack(_ sender: UIButton) {
+         //Add Below Code from "Code for Steps.txt". Fulfill Each Comment With Code
         
         //Set ScrollPoint and Go to ZERO location (Top) of ScrollView - animated
-        ScrollView.setContentOffset(CGPointZero, animated: true)
+        ScrollView.setContentOffset(CGPoint.zero, animated: true)
         
         //set txtFirst as firstresponder
         txtFirst.becomeFirstResponder()
+       
+
+       
     }
     
 // 12) Modify btnView functions. Goes to position in ScrollView where the btnBack button is
-    @IBAction func btnView(sender: UIButton) {
-         //Add Below Code. Read Comments
+    @IBAction func btnView(_ sender: UIButton) {
+        //Add Below Code from "Code for Steps.txt". Fulfill Each Comment With Code
         
         //hide keyboard
         DismissKeyboard()
@@ -105,7 +127,7 @@
         
         //X = from Left, Y = from Top
         //get X = 0, Y = location of btnBack Y
-        scrollPoint = CGPointMake(0, btnBack.frame.origin.y)
+        scrollPoint = CGPoint(x: 0, y: btnBack.frame.origin.y)
         
         //Set ScrollPoint and Go to animated
         ScrollView.setContentOffset(scrollPoint, animated: true)
@@ -113,10 +135,10 @@
     }
     
 //  13) Modify btnSave function. Validates UITextfields have content, formats text to place in UITextView txtContacts, Goes to location of btnBack button.
-    @IBAction func btnSave(sender: UIButton) {
-        //Add Below Code. Read Comments
-        
-       //hide keyboard
+    @IBAction func btnSave(_ sender: UIButton) {
+        //Add Below Code from "Code for Steps.txt". Fulfill Each Comment With Code
+       
+        //hide keyboard
         DismissKeyboard()
         
         //validation that all fields are entered
@@ -150,11 +172,13 @@
             
             //X = from Left, Y = from Top
             //get X = 0, Y = location of btnBack Y
-            scrollPoint = CGPointMake(0, btnBack.frame.origin.y)
-            
+            scrollPoint = CGPoint(x:0, y:btnBack.frame.origin.y)
             //Set ScrollPoint and Go to animated
             ScrollView.setContentOffset(scrollPoint, animated: true)
-
+            
         }
-    }
+
+        
+        
+     }
     
